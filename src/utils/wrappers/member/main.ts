@@ -12,6 +12,7 @@ import Sleep from "../../sleep/main";
 import type { EquipmentItem, InventoryItem, MixedItem } from "./types";
 import Cache from "../../../modules/cache/main";
 import World from "../world/main";
+import Logger from "../../logger/main";
 
 export default class Member {
   public constructor(private readonly player: Player) {}
@@ -251,5 +252,37 @@ export default class Member {
   }
   public GetCombatTime(): number {
     return Cache.CombatCache[this.EntityID()] ?? 0;
+  }
+
+  public InsideCombatSafeZone(): boolean {
+    let inside = false;
+
+    for (const zone of Config.CombatSafeZones) {
+      const dimension =
+        zone.dimension === "minecraft:overworld"
+          ? World.Overworld()
+          : zone.dimension === "minecraft:nether"
+            ? World.Nether()
+            : zone.dimension === "minecraft:the_end"
+              ? World.End()
+              : undefined;
+
+      if (!dimension) {
+        Logger.Error(`Could not find dimension "${zone.dimension}"!`);
+        return false;
+      }
+
+      const entities = dimension.getEntities({
+        type: "minecraft:player",
+        location: zone.location,
+        maxDistance: zone.range,
+      });
+
+      if (entities.some((player) => player.id === this.EntityID())) {
+        inside = true;
+      }
+    }
+
+    return inside;
   }
 }

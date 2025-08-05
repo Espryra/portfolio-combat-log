@@ -113,6 +113,10 @@ export default class Combat {
     const source = new Member(sourcePlayer);
     const target = new Member(targetPlayer);
 
+    if (target.InsideCombatSafeZone()) {
+      return;
+    }
+
     source.SetCombatTime();
     target.SetCombatTime();
   }
