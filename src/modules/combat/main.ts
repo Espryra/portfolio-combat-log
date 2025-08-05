@@ -35,6 +35,8 @@ export default class Combat {
 
     member.ClearAll();
 
+    CombatLogDatabase.Set(member.EntityID());
+
     await member.Moved();
 
     member.SendWarning(
