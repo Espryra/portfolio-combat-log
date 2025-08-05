@@ -78,6 +78,8 @@ export default class Combat {
       return;
     }
 
+    await Sleep(5);
+
     switch (Config.CombatPunishDropType) {
       case "instant":
         for (const item of inventory) {
@@ -94,8 +96,6 @@ export default class Combat {
         }
         break;
     }
-
-    await Sleep(0);
 
     World.BroadcastWarning(`${username} has combat logged!`);
   }

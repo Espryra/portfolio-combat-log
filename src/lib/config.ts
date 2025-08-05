@@ -20,8 +20,8 @@ const Config = {
 
   // Combat
   CombatSetTime: 15, // The time in ticks the member is set at when hit
-  CombatPunishDropType: "flow", // "flow" | "instant"
-  CombatPunishDropSpeed: 1, // The speed of each itemstack dropped per a tick. Not needed if using instant drop type.
+  CombatPunishDropType: "instant", // "flow" | "instant"
+  CombatPunishDropSpeed: 5, // The speed of each itemstack dropped per a tick. Not needed if using instant drop type.
   CombatUpdateSound: "note.hat", // Plays every second the member is in combat, to let them know they are still in combat. If you do not want this, set it to null or undefined.
   EnteredCombatWarning: true, // Warns the member when they enter combat.
 };
