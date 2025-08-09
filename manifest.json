@@ -1,7 +1,7 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Combat Log System",
+    "name": "Portfolio Combat Log System",
     "description": "Combat log system on my github.",
     "min_engine_version": [1, 21, 93],
     "uuid": "86f8ab7b-9dbb-452c-8ed9-a12caa1243a3",
